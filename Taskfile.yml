@@ -1,0 +1,25 @@
+# https://taskfile.dev
+
+version: '3'
+
+tasks:
+  start:
+    desc: start terraria server
+    cmds:
+      - docker compose up
+  buildup:
+    desc: rebuild image and start server
+    cmds:
+      - docker compose up --build
+  rebuild:
+    desc: rebuild image
+    cmds:
+      - docker compose build
+  rmworld:
+    desc: delete given world data.
+    cmds:
+      - docker compose run --rm -it shell rm {{.CLI_ARGS}}
+  clearlog:
+    desc: delete all logs
+    cmds:
+      - docker compose run --rm shell rm /server/logs/*

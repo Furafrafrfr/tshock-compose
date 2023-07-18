@@ -1,0 +1,6 @@
+.secrets.env
+plugins/*
+tshock/*
+worlds/*
+logs/*
+!.gitkeep

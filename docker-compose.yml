@@ -1,0 +1,31 @@
+version: "3"
+services:
+  terraria:
+    build:
+      context: .
+      target: server
+    volumes:
+      - ./tshock:/server/tshock
+      - ./logs:/server/logs
+      - ./worlds:/server/worlds
+      - ./plugins:/server/plugins
+    ports:
+      - ${PORT:-7777}:7777
+      - 7878:7878
+    env_file:
+      - ./.env
+      - ./.secrets.env
+  shell:
+    image: debian
+    command: ["/bin/sh"]
+    volumes:
+      - ./tshock:/server/tshock
+      - ./worlds:/server/worlds
+      - ./plugins:/server/plugins
+      - ./logs:/server/logs
+    profiles: ["shell"]
+
+volumes:
+  tshock:
+  worlds:
+  plugins:
